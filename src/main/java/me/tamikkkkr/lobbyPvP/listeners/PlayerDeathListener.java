@@ -53,7 +53,7 @@ public class PlayerDeathListener implements Listener {
 
             }
 
-            chatUtil.broadcastMessage("&6>>>&a " + victim.getDisplayName()  + " &fбыл убит&c " + killer.getDisplayName());
+            chatUtil.broadcastMessage("&6>>>&a " + victim.getDisplayName()  + " &fwas killed by&c " + killer.getDisplayName());
             event.setDeathMessage(null);
 
 
