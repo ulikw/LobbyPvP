@@ -75,7 +75,6 @@ lang:
   pvp-disabled: '&6&l>&r&c PvP disabled!'
   pvp-disabling: '&cPvP disabling in %time% second(s).'
   reloaded: '&aSuccessfully reloaded the LobbyPvP config!'
-  kill: '&a%victim% &fwas killed by &c%killer%'
   disabled-in-world: "&cYou may not use this in this world!"
   no-permissions: "&cYou don't have permission!"
   ability-cooldown: "&7The ability will be available in &e%time% &7s"
