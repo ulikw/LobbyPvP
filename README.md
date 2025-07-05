@@ -77,6 +77,7 @@ lang:
   reloaded: '&aSuccessfully reloaded the LobbyPvP config!'
   disabled-in-world: "&cYou may not use this in this world!"
   no-permissions: "&cYou don't have permission!"
+  kill-message: "&6>>> &a%victim% &fwas killed by &c%killer%"
   ability-cooldown: "&7The ability will be available in &e%time% &7s"
   ability-activate: "&aYou've gained extra &6damage &aand &6speed&a!"
   usage: "&cUsage: /lobbypvp reload"
