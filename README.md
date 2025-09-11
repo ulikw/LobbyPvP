@@ -63,11 +63,16 @@ regeneration-on-kill:
 lightning-effect-on-kill:
   enable: true
 
+# Should the pvp activation countdown sound be played?
+pvp-activation-deactivation-countdown-sound:
+  enable: true
+
 
 # --------------------------------------------------
 # Messages
 # --------------------------------------------------
 
+# If you don't want the message to be displayed, leave the value in the buckets empty.
 lang:
   prefix: "&b⚔ LobbyPvP ⚔ &6>>> "
   pvp-enabled: '&6&l>&r&a PvP enabled!'
