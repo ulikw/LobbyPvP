@@ -57,7 +57,10 @@ public class PlayerInteractListener implements Listener {
             long secondsLeft = (cooldowns.get(player.getUniqueId()) - System.currentTimeMillis()) / 1000;
 
             if (secondsLeft > 0) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.ability-cooldown", "&cThe ability is recharging! Left: &e%time% &cseconds").replace("%time%", Long.toString(secondsLeft)))));
+                if (!plugin.getConfig().getString("lang.ability-cooldown").isEmpty()) {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.ability-cooldown", "&cThe ability is recharging! Left: &e%time% &cseconds").replace("%time%", Long.toString(secondsLeft)))));
+                }
+
                 return;
             }
         }
@@ -80,8 +83,11 @@ public class PlayerInteractListener implements Listener {
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, speedDuration * 20, speedAmplifier, false, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, strengthDuration * 20, strengthAmplifier, false, false));
 
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
-                "lang.ability-activate", "&aYou've gained extra &6damage &aand &6speed&a!")));
+        if (!plugin.getConfig().getString("lang.ability-activate").isEmpty()) {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
+                    "lang.ability-activate", "&aYou've gained extra &6damage &aand &6speed&a!")));
+        }
+
 
     }
 

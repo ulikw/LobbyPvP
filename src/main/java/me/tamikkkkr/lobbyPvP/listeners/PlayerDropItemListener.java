@@ -32,6 +32,7 @@ public class PlayerDropItemListener implements Listener {
 
            event.setCancelled(true);
 
+
         }
 
         else if (material == Material.getMaterial(plugin.getConfig().getString("items.helmet.material"))) {

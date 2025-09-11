@@ -121,8 +121,14 @@ public class ItemSlotChangeListener implements Listener {
 
                             if (enableTimer == 0) {
 
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.pvp-enabled", "&aPvP Enabled")));
-                                player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 1.0F);
+                                if (!plugin.getConfig().getString("lang.pvp-enabled").isEmpty()) {
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.pvp-enabled", "&aPvP Enabled")));
+                                }
+
+                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
+                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 1.0F);
+                                }
+
                                 playersInPvP.add(player.getUniqueId());
                                 itemsManager.giveSet(player);
                                 activeEnableTimers.remove(player.getUniqueId());
@@ -130,9 +136,15 @@ public class ItemSlotChangeListener implements Listener {
 
                             } else {
 
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
+                                if (!plugin.getConfig().getString("lang.pvp-enabling").isEmpty()) {
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
                                             "lang.pvp-enabling", "&aPvP enabling in %time% second(s).").replace("%time%", Integer.toString(enableTimer))));
-                                player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 2.0F);
+                                }
+
+                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
+                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 2.0F);
+                                }
+
                                 enableTimer--;
 
                             }
@@ -171,8 +183,14 @@ public class ItemSlotChangeListener implements Listener {
 
                             if (disableTimer == 0) {
 
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.pvp-disabled", "&cPvP Disabled")));
-                                player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 1.0F);
+                                if (!plugin.getConfig().getString("lang.pvp-disabled").isEmpty()) {
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.pvp-disabled", "&cPvP Disabled")));
+                                }
+
+                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
+                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 1.0F);
+                                }
+
                                 removeFromPvp(player);
                                 player.setHealth(20);
                                 itemsManager.takeSet(player);
@@ -180,10 +198,14 @@ public class ItemSlotChangeListener implements Listener {
                                 cancel();
 
                             } else {
+                                if (!plugin.getConfig().getString("lang.pvp-disabling").isEmpty()) {
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
+                                            "lang.pvp-disabling", "&cPvP disabling in %time% second(s).").replace("%time%", Integer.toString(disableTimer))));
+                                }
 
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
-                                        "lang.pvp-disabling", "&cPvP disabling in %time% second(s).").replace("%time%", Integer.toString(disableTimer))));
-                                player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 2.0F);
+                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
+                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 2.0F);
+                                }
                                 disableTimer--;
 
                             }
