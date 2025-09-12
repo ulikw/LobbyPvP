@@ -2,6 +2,7 @@ package me.tamikkkkr.lobbyPvP.listeners;
 
 import me.tamikkkkr.lobbyPvP.Plugin;
 import me.tamikkkkr.lobbyPvP.utils.ChatUtil;
+import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,17 +15,19 @@ public class PlayerDeathListener implements Listener {
     private final ItemSlotChangeListener itemSlotChangeListener;
     private final ChatUtil chatUtil;
     private final Plugin plugin;
+    private final IsPvpWorld isPvpWorld;
 
-    public PlayerDeathListener(ItemSlotChangeListener itemSlotChangeListener, ChatUtil chatUtil, Plugin plugin) {
+    public PlayerDeathListener(ItemSlotChangeListener itemSlotChangeListener, ChatUtil chatUtil, Plugin plugin, IsPvpWorld isPvpWorld) {
         this.itemSlotChangeListener = itemSlotChangeListener;
         this.chatUtil = chatUtil;
         this.plugin = plugin;
+        this.isPvpWorld = isPvpWorld;
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
 
-            if (plugin.getConfig().getStringList("disabled-worlds").contains(event.getEntity().getWorld().getName())) {
+            if (!isPvpWorld.isPvpWorld(event.getEntity().getWorld())) {
                 return;
             }
 

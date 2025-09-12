@@ -2,6 +2,7 @@ package me.tamikkkkr.lobbyPvP.listeners;
 
 import me.tamikkkkr.lobbyPvP.ItemsManager;
 import me.tamikkkkr.lobbyPvP.Plugin;
+import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
 import me.tamikkkkr.lobbyPvP.utils.LoadItems;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,15 +25,17 @@ public class ItemSlotChangeListener implements Listener {
     private final LoadItems loadItems;
     private final ItemsManager itemsManager;
     private final Plugin plugin;
+    private final IsPvpWorld isPvpWorld;
 
     private final HashSet<UUID> playersInPvP = new HashSet<>();
     private final HashMap<UUID, BukkitRunnable> activeEnableTimers = new HashMap<>();
     private final HashMap<UUID, BukkitRunnable> activeDisableTimers = new HashMap<>();
 
-    public ItemSlotChangeListener(LoadItems loadItems, ItemsManager itemsManager, Plugin plugin) {
+    public ItemSlotChangeListener(LoadItems loadItems, ItemsManager itemsManager, Plugin plugin, IsPvpWorld isPvpWorld) {
         this.loadItems = loadItems;
         this.itemsManager = itemsManager;
         this.plugin = plugin;
+        this.isPvpWorld = isPvpWorld;
     }
 
 
@@ -51,7 +54,7 @@ public class ItemSlotChangeListener implements Listener {
     @EventHandler
     public void onSlotChange(PlayerItemHeldEvent event) {
 
-        if (plugin.getConfig().getStringList("disabled-worlds").contains(event.getPlayer().getWorld().getName())) {
+        if (!isPvpWorld.isPvpWorld(event.getPlayer().getWorld())) {
             return;
         }
 

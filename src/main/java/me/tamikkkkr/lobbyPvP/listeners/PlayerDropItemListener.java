@@ -1,5 +1,6 @@
 package me.tamikkkkr.lobbyPvP.listeners;
 
+import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
@@ -13,15 +14,17 @@ import org.bukkit.plugin.Plugin;
 public class PlayerDropItemListener implements Listener {
 
     private final Plugin plugin;
+    private final IsPvpWorld isPvpWorld;
 
-    public PlayerDropItemListener(Plugin plugin) {
+    public PlayerDropItemListener(Plugin plugin, IsPvpWorld isPvpWorld) {
         this.plugin = plugin;
+        this.isPvpWorld = isPvpWorld;
     }
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
 
-        if (plugin.getConfig().getStringList("disabled-worlds").contains(event.getPlayer().getWorld().getName())) {
+        if (!isPvpWorld.isPvpWorld(event.getPlayer().getWorld())) {
             return;
         }
 
@@ -67,7 +70,7 @@ public class PlayerDropItemListener implements Listener {
     @EventHandler
     public void onPlayerClick(InventoryClickEvent event) {
 
-        if (plugin.getConfig().getStringList("disabled-worlds").contains(event.getWhoClicked().getWorld().getName())) {
+        if (!isPvpWorld.isPvpWorld(event.getWhoClicked().getWorld())) {
             return;
         }
 

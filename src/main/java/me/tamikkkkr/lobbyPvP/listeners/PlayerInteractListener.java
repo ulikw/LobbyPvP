@@ -1,5 +1,6 @@
 package me.tamikkkkr.lobbyPvP.listeners;
 
+import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -21,14 +22,20 @@ public class PlayerInteractListener implements Listener {
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
     private final Plugin plugin;
     private final ItemSlotChangeListener itemSlotChangeListener;
+    private final IsPvpWorld isPvpWorld;
 
-    public PlayerInteractListener(Plugin plugin, ItemSlotChangeListener itemSlotChangeListener) {
+    public PlayerInteractListener(Plugin plugin, ItemSlotChangeListener itemSlotChangeListener, IsPvpWorld isPvpWorld) {
         this.plugin = plugin;
         this.itemSlotChangeListener = itemSlotChangeListener;
+        this.isPvpWorld = isPvpWorld;
     }
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
+
+        if (!isPvpWorld.isPvpWorld(event.getPlayer().getWorld())) {
+            return;
+        }
 
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
