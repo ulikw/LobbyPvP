@@ -1,5 +1,6 @@
 package me.tamikkkkr.lobbyPvP;
 
+import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
 import me.tamikkkkr.lobbyPvP.utils.LoadItems;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -23,10 +24,6 @@ public class ItemsManager {
     }
 
     public void giveSword(Player player) {
-
-        if (plugin.getConfig().getStringList("disabled-worlds").contains(player.getWorld().getName())) {
-            return;
-        }
 
         ItemStack sword = loadItems.getWeapon();
         ItemMeta swordMeta = sword.getItemMeta();

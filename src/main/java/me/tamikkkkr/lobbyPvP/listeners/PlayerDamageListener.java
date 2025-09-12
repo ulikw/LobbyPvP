@@ -1,6 +1,7 @@
 package me.tamikkkkr.lobbyPvP.listeners;
 
 import me.tamikkkkr.lobbyPvP.Plugin;
+import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -10,18 +11,18 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class PlayerDamageListener implements Listener {
 
     private final ItemSlotChangeListener itemSlotChangeListener;
-    private final Plugin plugin;
+    private final IsPvpWorld isPvpWorld;
 
-    public PlayerDamageListener(ItemSlotChangeListener itemSlotChangeListener, Plugin plugin) {
+    public PlayerDamageListener(ItemSlotChangeListener itemSlotChangeListener, IsPvpWorld isPvpWorld) {
         this.itemSlotChangeListener = itemSlotChangeListener;
-        this.plugin = plugin;
+        this.isPvpWorld = isPvpWorld;
     }
     
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
 
-        if (plugin.getConfig().getStringList("disabled-worlds").contains(event.getDamager().getWorld().getName())) {
+        if (!isPvpWorld.isPvpWorld(event.getDamager().getWorld())) {
             return;
         }
 

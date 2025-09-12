@@ -2,25 +2,28 @@ package me.tamikkkkr.lobbyPvP.listeners;
 
 import me.tamikkkkr.lobbyPvP.ItemsManager;
 import me.tamikkkkr.lobbyPvP.Plugin;
+import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class PlayerJoinListener implements Listener {
 
     private final ItemsManager giveItems;
-    private final Plugin plugin;
+    private final IsPvpWorld isPvpWorld;
 
-    public PlayerJoinListener(ItemsManager giveItems, Plugin plugin) {
+    public PlayerJoinListener(ItemsManager giveItems, IsPvpWorld isPvpWorld) {
         this.giveItems = giveItems;
-        this.plugin = plugin;
+        this.isPvpWorld = isPvpWorld;
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
 
-        if (plugin.getConfig().getStringList("disabled-worlds").contains(event.getPlayer().getWorld().getName())) {
+        if (!isPvpWorld.isPvpWorld(event.getPlayer().getWorld())) {
             return;
         }
 
@@ -28,11 +31,8 @@ public class PlayerJoinListener implements Listener {
 
         player.setHealth(20);
 
-        if (!(plugin.getConfig().getStringList("disabled-worlds").contains(player.getWorld().getName()))) {
+        giveItems.giveSword(player);
 
-            giveItems.giveSword(player);
-
-        }
 
     }
 

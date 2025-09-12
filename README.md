@@ -37,8 +37,21 @@ disable-cooldown: 3
 # Enable it if you have a plugin that cleans inventory when logging in.
 delay-before-giving-sword: false
 
+###########################################################################################################
+
+# Worlds where a plugin shouldn't work.
+# Will not be counted if "worlds-white-list-mode" is enabled
 disabled-worlds:
   - world_nopvp
+
+# If enabled, the plugin will only work in the worlds that
+# are listed in the "white-list-worlds". It may be useful if you have one lobby and many ordinary worlds.
+worlds-white-list-mode:
+  enable: false
+  white-list-worlds:
+    - world_pvp
+
+###########################################################################################################
 
 # If enabled, the speed effect will be given when right-clicking.
 right-click-ability:
@@ -50,8 +63,6 @@ right-click-ability:
   strength:
     duration: 5
     amplifier: 0
-
-
 
 #  If enabled, the player will receive a regeneration effect when killing another player.
 regeneration-on-kill:
