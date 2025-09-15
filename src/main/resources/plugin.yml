@@ -1,5 +1,5 @@
 name: LobbyPvP
-version: '1.0.4'
+version: '1.0.5'
 main: me.tamikkkkr.lobbyPvP.Plugin
 softdepend: [DeluxeHub]
 api-version: '1.21'
