@@ -51,6 +51,7 @@ public class ItemSlotChangeListener implements Listener {
 
     }
 
+
     @EventHandler
     public void onSlotChange(PlayerItemHeldEvent event) {
 
@@ -195,12 +196,16 @@ public class ItemSlotChangeListener implements Listener {
                                 }
 
                                 removeFromPvp(player);
-                                player.setHealth(20);
+                                if (player.getHealth() > 0) {
+                                    player.setHealth(20);
+                                }
+
                                 itemsManager.takeSet(player);
                                 activeDisableTimers.remove(player.getUniqueId());
                                 cancel();
 
                             } else {
+
                                 if (!plugin.getConfig().getString("lang.pvp-disabling").isEmpty()) {
                                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
                                             "lang.pvp-disabling", "&cPvP disabling in %time% second(s).").replace("%time%", Integer.toString(disableTimer))));

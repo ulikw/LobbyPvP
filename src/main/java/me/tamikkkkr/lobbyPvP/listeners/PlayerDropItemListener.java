@@ -38,25 +38,25 @@ public class PlayerDropItemListener implements Listener {
 
         }
 
-        else if (material == Material.getMaterial(plugin.getConfig().getString("items.helmet.material"))) {
+        else if (material == Material.getMaterial(plugin.getConfig().getString("items.helmet.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvphelmet"))) {
 
             event.setCancelled(true);
 
         }
 
-        else if (material == Material.getMaterial(plugin.getConfig().getString("items.chestplate.material"))) {
+        else if (material == Material.getMaterial(plugin.getConfig().getString("items.chestplate.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpchestplate"))) {
 
             event.setCancelled(true);
 
         }
 
-        else if (material == Material.getMaterial(plugin.getConfig().getString("items.leggings.material"))) {
+        else if (material == Material.getMaterial(plugin.getConfig().getString("items.leggings.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpleggings"))) {
 
             event.setCancelled(true);
 
         }
 
-        else if (material == Material.getMaterial(plugin.getConfig().getString("items.boots.material"))) {
+        else if (material == Material.getMaterial(plugin.getConfig().getString("items.boots.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpboots"))) {
 
             event.setCancelled(true);
 
@@ -78,31 +78,31 @@ public class PlayerDropItemListener implements Listener {
 
         if (item != null) {
 
-            if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.weapon.material"))) {
+            if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.weapon.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpsword"))) {
 
                 event.setCancelled(true);
 
             }
 
-            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.helmet.material"))) {
+            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.helmet.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvphelmet"))) {
 
                 event.setCancelled(true);
 
             }
 
-            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.chestplate.material"))) {
+            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.chestplate.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpchestplate"))) {
 
                 event.setCancelled(true);
 
             }
 
-            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.leggings.material"))) {
+            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.leggings.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpleggings"))) {
 
                 event.setCancelled(true);
 
             }
 
-            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.boots.material"))) {
+            else if (item.getType() == Material.getMaterial(plugin.getConfig().getString("items.boots.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpboots"))) {
 
                 event.setCancelled(true);
 
@@ -125,7 +125,7 @@ public class PlayerDropItemListener implements Listener {
 
             Material material = item.getType();
 
-            if (material == Material.getMaterial(plugin.getConfig().getString("items.weapon.material"))) {
+            if (material == Material.getMaterial(plugin.getConfig().getString("items.weapon.material")) && item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpsword"))) {
 
                 event.setCancelled(true);
 

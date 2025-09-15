@@ -5,6 +5,8 @@ import me.tamikkkkr.lobbyPvP.listeners.*;
 import me.tamikkkkr.lobbyPvP.utils.ChatUtil;
 import me.tamikkkkr.lobbyPvP.utils.IsPvpWorld;
 import me.tamikkkkr.lobbyPvP.utils.LoadItems;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Plugin extends JavaPlugin {
@@ -24,18 +26,24 @@ public final class Plugin extends JavaPlugin {
         // Initializing dependencies
         initializeDependencies();
 
+        for (Player player: Bukkit.getOnlinePlayers()) {
+            if (isPvpWorld.isPvpWorld(player.getWorld())) {
+                itemsManager.giveSword(player);
+            }
+        }
+
         getLogger().info("LobbyPvP plugin has been enabled!");
 
         // Command registration
-        getCommand("lobbypvp").setExecutor(new PluginReloadCommand(this, loadItems, itemsManager));
+        getCommand("lobbypvp").setExecutor(new PluginReloadCommand(this, loadItems, itemsManager, itemSlotChangeListener));
 
         // Registration of listeners
         getServer().getPluginManager().registerEvents(new PlayerDamageListener(itemSlotChangeListener, isPvpWorld), this);
         getServer().getPluginManager().registerEvents(new PlayerDropItemListener(this, isPvpWorld), this);
         getServer().getPluginManager().registerEvents(itemSlotChangeListener, this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(itemsManager, isPvpWorld), this);
-        getServer().getPluginManager().registerEvents(new PlayerDeathListener(itemSlotChangeListener, chatUtil, this, isPvpWorld), this);
-        getServer().getPluginManager().registerEvents(new PlayerRespawnListener(itemsManager, isPvpWorld), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(itemsManager, isPvpWorld, this), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeathListener(itemSlotChangeListener, chatUtil, this, isPvpWorld, itemsManager), this);
+        getServer().getPluginManager().registerEvents(new PlayerRespawnListener(itemsManager, isPvpWorld, this), this);
         getServer().getPluginManager().registerEvents(new PlayerLeaveListener(itemSlotChangeListener, itemsManager, isPvpWorld), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(this, itemSlotChangeListener, isPvpWorld), this);
         getServer().getPluginManager().registerEvents(new PlayerHungerListener(isPvpWorld), this);
@@ -47,6 +55,12 @@ public final class Plugin extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         getLogger().info("LobbyPvP plugin has been disabled!");
+
+        for (Player player: Bukkit.getOnlinePlayers()) {
+            itemsManager.takeSet(player);
+            itemsManager.takeSword(player);
+        }
+
     }
 
 

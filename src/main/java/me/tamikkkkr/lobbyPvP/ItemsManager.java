@@ -96,8 +96,15 @@ public class ItemsManager {
 
     public void takeSword(Player player) {
 
-        player.getInventory().remove(loadItems.getWeaponMaterial());
-
+        for (ItemStack item: player.getInventory()) {
+            if (item != null) {
+                if (item.getItemMeta() != null) {
+                    if (item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpsword"))) {
+                        player.getInventory().remove(item);
+                    }
+                }
+            }
+        }
     }
 
     public ItemStack[] createArmor() {
@@ -113,6 +120,7 @@ public class ItemsManager {
             }
             helmetMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             helmetMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Helmet"));
+            helmetMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvphelmet"), PersistentDataType.STRING, "pvphelmet");
             helmet.setItemMeta(helmetMeta);
 
         }
@@ -128,6 +136,7 @@ public class ItemsManager {
             }
             chestplateMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             chestplateMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Chestplate"));
+            chestplateMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvpchestplate"), PersistentDataType.STRING, "pvpchestplate");
             chestplate.setItemMeta(chestplateMeta);
         }
 
@@ -142,6 +151,7 @@ public class ItemsManager {
             }
             leggingsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             leggingsMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Leggings"));
+            leggingsMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvpleggings"), PersistentDataType.STRING, "pvpleggings");
             leggings.setItemMeta(leggingsMeta);
         }
 
@@ -156,11 +166,21 @@ public class ItemsManager {
             }
             bootsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             bootsMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Boots"));
+            bootsMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvpboots"), PersistentDataType.STRING, "pvpboots");
             boots.setItemMeta(bootsMeta);
 
         }
         return new ItemStack[] {helmet, chestplate, leggings, boots};
 
+    }
+
+    public boolean isPvpSword(ItemStack sword) {
+        if (sword.getItemMeta() != null) {
+            if (sword.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpsword"))) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
