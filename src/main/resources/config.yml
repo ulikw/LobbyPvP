@@ -89,23 +89,27 @@ items:
   helmet:
     # Item to use as the helmet
     material: DIAMOND_HELMET
+    name: '&aPvP Helmet'
     # Lvl of protection enchantment on helmet. Set to 0 to disable.
     protection: 1
 
   chestplate:
     # Item to use as the chestplate
     material: DIAMOND_CHESTPLATE
+    name: '&aPvP Chestplate'
     # Lvl of protection enchantment on chestplate. Set to 0 to disable.
     protection: 1
 
   leggings:
     # Item to use as the leggings
     material: DIAMOND_LEGGINGS
+    name: '&aPvP Leggings'
     # Lvl of protection enchantment on leggings. Set to 0 to disable.
     protection: 1
 
   boots:
     # Item to use as the boots
     material: DIAMOND_BOOTS
+    name: '&aPvP Boots'
     # Lvl of protection enchantment on boots. Set to 0 to disable.
     protection: 1
