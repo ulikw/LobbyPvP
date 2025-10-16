@@ -119,7 +119,7 @@ public class ItemsManager {
                 helmetMeta.addEnchant(Enchantment.PROTECTION, plugin.getConfig().getInt("items.helmet.protection"), true);
             }
             helmetMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            helmetMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Helmet"));
+            helmetMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("items.helmet.name", "&aPvP Helmet")));
             helmetMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvphelmet"), PersistentDataType.STRING, "pvphelmet");
             helmet.setItemMeta(helmetMeta);
 
@@ -135,13 +135,13 @@ public class ItemsManager {
                 chestplateMeta.addEnchant(Enchantment.PROTECTION, plugin.getConfig().getInt("items.chestplate.protection"), true);
             }
             chestplateMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            chestplateMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Chestplate"));
+            chestplateMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("items.chestplate.name", "&aPvP Chestplate")));
             chestplateMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvpchestplate"), PersistentDataType.STRING, "pvpchestplate");
             chestplate.setItemMeta(chestplateMeta);
         }
 
         ItemStack leggings = loadItems.getLeggings();
-        ItemMeta leggingsMeta = chestplate.getItemMeta();
+        ItemMeta leggingsMeta = leggings.getItemMeta();
 
         if (leggingsMeta != null) {
 
@@ -150,13 +150,13 @@ public class ItemsManager {
                 leggingsMeta.addEnchant(Enchantment.PROTECTION, plugin.getConfig().getInt("items.leggings.protection"), true);
             }
             leggingsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            leggingsMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Leggings"));
+            leggingsMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("items.leggings.name", "&aPvP Leggings")));
             leggingsMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvpleggings"), PersistentDataType.STRING, "pvpleggings");
             leggings.setItemMeta(leggingsMeta);
         }
 
         ItemStack boots = loadItems.getBoots();
-        ItemMeta bootsMeta = chestplate.getItemMeta();
+        ItemMeta bootsMeta = boots.getItemMeta();
 
         if (bootsMeta != null) {
 
@@ -165,7 +165,7 @@ public class ItemsManager {
                 bootsMeta.addEnchant(Enchantment.PROTECTION, plugin.getConfig().getInt("items.boots.protection"), true);
             }
             bootsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            bootsMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aPvP Boots"));
+            bootsMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("items.boots.name", "&aPvP Boots")));
             bootsMeta.getPersistentDataContainer().set(NamespacedKey.fromString("pvpboots"), PersistentDataType.STRING, "pvpboots");
             boots.setItemMeta(bootsMeta);
 
