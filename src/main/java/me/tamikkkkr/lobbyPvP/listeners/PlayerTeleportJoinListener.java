@@ -35,6 +35,7 @@ public class PlayerTeleportJoinListener implements Listener {
             itemSlotChangeListener.removeFromPvp(player);
             itemsManager.takeSet(player);
             itemsManager.takeSword(player);
+
         }
 
     }
