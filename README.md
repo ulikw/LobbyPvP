@@ -1,11 +1,4 @@
-# ⚔️ LobbyPvP » Allow players to fight in the lobby! ⚔️
-
-[![Spigot Downloads](https://img.shields.io/spiget/downloads/126633?style=for-the-badge&color=success&label=Downloads)](https://www.spigotmc.org/resources/⚔️-lobbypvp-»-allow-players-to-fight-in-the-lobby-⚔️.126633/)
-[![Spigot Rating](https://img.shields.io/spiget/rating/126633?style=for-the-badge&color=blue&label=Rating)](https://www.spigotmc.org/resources/⚔️-lobbypvp-»-allow-players-to-fight-in-the-lobby-⚔️.126633/)
-[![Spigot Version](https://img.shields.io/spiget/version/126633?style=for-the-badge&label=Version)](https://www.spigotmc.org/resources/⚔️-lobbypvp-»-allow-players-to-fight-in-the-lobby-⚔️.126633/)
-
-### **➡️ [Download on SpigotMC](https://www.spigotmc.org/resources/⚔️-lobbypvp-»-allow-players-to-fight-in-the-lobby-⚔️.126633/)**
-
+# ⚔️ LobbyPvP - Simple Hub PvP plugin
 
 **LobbyPvP** is an interesting plugin for your minecraft server that will allow players to spend time fighting each other.
 
@@ -146,11 +139,10 @@ items:
 
 ## 📊 Compatibility
 #### Native Version: 1.21.4
-#### Supported Versions: 1.21.x
+#### Supported Versions: 1.21.x, 26.x
 #### Tested Servers: Paper, Spigot
 
 ## ❓ Support
 #### if you have a problem, please refer to the plugin page in the discussion section 
-
 
 
