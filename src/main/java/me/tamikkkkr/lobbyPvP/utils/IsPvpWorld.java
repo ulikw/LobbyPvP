@@ -10,7 +10,7 @@ public class IsPvpWorld {
 
     public IsPvpWorld(Plugin plugin) {
         this.plugin = plugin;
-        this.whiteListMode = plugin.getConfig().getBoolean("worlds-white-list-mode.enable");
+        this.whiteListMode = plugin.getConfig().getBoolean("worlds-white-list-mode.enable", false);
     }
 
     public boolean isPvpWorld(World world) {
