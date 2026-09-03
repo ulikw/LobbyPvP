@@ -96,11 +96,14 @@ public class ItemsManager {
 
     public void takeSword(Player player) {
 
-        for (ItemStack item: player.getInventory()) {
+        ItemStack[] contents = player.getInventory().getContents();
+
+        for (int i = 0; i < contents.length; i++) {
+            ItemStack item = contents[i];
             if (item != null) {
                 if (item.getItemMeta() != null) {
                     if (item.getItemMeta().getPersistentDataContainer().has(NamespacedKey.fromString("pvpsword"))) {
-                        player.getInventory().remove(item);
+                        player.getInventory().setItem(i, null);
                     }
                 }
             }
