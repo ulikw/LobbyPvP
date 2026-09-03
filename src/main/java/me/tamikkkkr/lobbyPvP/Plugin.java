@@ -34,7 +34,7 @@ public final class Plugin extends JavaPlugin {
         // Initializing dependencies
         initializeDependencies();
 
-        // bStats metrics (https://bstats.org/plugin/bukkit/LobbyPvP/33828)
+        // bStats metrics
         new Metrics(this, BSTATS_PLUGIN_ID);
 
         for (Player player: Bukkit.getOnlinePlayers()) {
