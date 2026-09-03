@@ -29,16 +29,29 @@ worlds-white-list-mode:
 
 ###########################################################################################################
 
-# If enabled, the speed effect will be given when right-clicking.
+# If enabled, the speed and the strength effects will be given when right-clicking.
 right-click-ability:
   enable: true
   cooldown: 15
+
+  # Right-click effects configuration
   speed:
     duration: 5
     amplifier: 0
   strength:
     duration: 5
     amplifier: 0
+
+  # Live cooldown indicator while the ability recharges, plus a sound when it's ready again.
+  # mode: actionbar (text) or xp-bar (uses your XP bar/level as a progress meter).
+  cooldown-display:
+    enable: true
+    mode: actionbar
+    ready-sound: ENTITY_EXPERIENCE_ORB_PICKUP
+
+# If enabled, the player will receive the speed and the strength effects as Right-click above when killing another player.
+speed-strength-on-kill:
+  enable: true
 
 #  If enabled, the player will receive a regeneration effect when killing another player.
 regeneration-on-kill:
@@ -51,8 +64,11 @@ lightning-effect-on-kill:
   enable: true
 
 # Should the pvp activation countdown sound be played?
+# sound: any Bukkit Sound name.
+#        Worth trying: UI_BUTTON_CLICK, BLOCK_LEVER_CLICK, BLOCK_NOTE_BLOCK_PLING.
 pvp-activation-deactivation-countdown-sound:
   enable: true
+  sound: BLOCK_WOODEN_BUTTON_CLICK_ON
 
 
 # --------------------------------------------------
@@ -70,7 +86,6 @@ lang:
   disabled-in-world: "&cYou may not use this in this world!"
   no-permissions: "&cYou don't have permission!"
   kill-message: "&6>>> &a%victim% &fwas killed by &c%killer%"
-  ability-cooldown: "&7The ability will be available in &e%time% &7s"
   ability-activate: "&aYou've gained extra &6damage &aand &6speed&a!"
   usage: "&cUsage: /lobbypvp reload"
 
@@ -89,23 +104,27 @@ items:
   helmet:
     # Item to use as the helmet
     material: DIAMOND_HELMET
+    name: '&aPvP Helmet'
     # Lvl of protection enchantment on helmet. Set to 0 to disable.
     protection: 1
 
   chestplate:
     # Item to use as the chestplate
     material: DIAMOND_CHESTPLATE
+    name: '&aPvP Chestplate'
     # Lvl of protection enchantment on chestplate. Set to 0 to disable.
     protection: 1
 
   leggings:
     # Item to use as the leggings
     material: DIAMOND_LEGGINGS
+    name: '&aPvP Leggings'
     # Lvl of protection enchantment on leggings. Set to 0 to disable.
     protection: 1
 
   boots:
     # Item to use as the boots
     material: DIAMOND_BOOTS
+    name: '&aPvP Boots'
     # Lvl of protection enchantment on boots. Set to 0 to disable.
     protection: 1

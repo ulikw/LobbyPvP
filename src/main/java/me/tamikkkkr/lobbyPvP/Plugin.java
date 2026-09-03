@@ -23,6 +23,11 @@ public final class Plugin extends JavaPlugin {
         // Config loading
         saveDefaultConfig();
 
+        // Merge any new keys added in this version into existing configs without
+        // overwriting values the user already set.
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+
         // Initializing dependencies
         initializeDependencies();
 

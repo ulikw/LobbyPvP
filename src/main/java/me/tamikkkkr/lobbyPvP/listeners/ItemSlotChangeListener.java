@@ -27,6 +27,10 @@ public class ItemSlotChangeListener implements Listener {
     private final Plugin plugin;
     private final IsPvpWorld isPvpWorld;
 
+    // Small fixed delay before the enable countdown starts, so quickly scrolling past
+    // the sword slot doesn't trigger the countdown message/sound.
+    private static final long HOVER_SELECT_DELAY_TICKS = 4L; // 0.2 seconds
+
     private final HashSet<UUID> playersInPvP = new HashSet<>();
     private final HashMap<UUID, BukkitRunnable> activeEnableTimers = new HashMap<>();
     private final HashMap<UUID, BukkitRunnable> activeDisableTimers = new HashMap<>();
@@ -129,9 +133,7 @@ public class ItemSlotChangeListener implements Listener {
                                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.pvp-enabled", "&aPvP Enabled")));
                                 }
 
-                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
-                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 1.0F);
-                                }
+                                playCountdownSound(player, 1.0F);
 
                                 playersInPvP.add(player.getUniqueId());
                                 itemsManager.giveSet(player);
@@ -145,9 +147,7 @@ public class ItemSlotChangeListener implements Listener {
                                             "lang.pvp-enabling", "&aPvP enabling in %time% second(s).").replace("%time%", Integer.toString(enableTimer))));
                                 }
 
-                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
-                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 2.0F);
-                                }
+                                playCountdownSound(player, 2.0F);
 
                                 enableTimer--;
 
@@ -166,7 +166,7 @@ public class ItemSlotChangeListener implements Listener {
                 };
 
                  activeEnableTimers.put(uuid, enableTask);
-                 enableTask.runTaskTimer(plugin, 0L, 20L);
+                 enableTask.runTaskTimer(plugin, HOVER_SELECT_DELAY_TICKS, 20L);
 
             }
 
@@ -191,9 +191,7 @@ public class ItemSlotChangeListener implements Listener {
                                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.pvp-disabled", "&cPvP Disabled")));
                                 }
 
-                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
-                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 1.0F);
-                                }
+                                playCountdownSound(player, 1.0F);
 
                                 removeFromPvp(player);
                                 if (player.getHealth() > 0) {
@@ -211,9 +209,7 @@ public class ItemSlotChangeListener implements Listener {
                                             "lang.pvp-disabling", "&cPvP disabling in %time% second(s).").replace("%time%", Integer.toString(disableTimer))));
                                 }
 
-                                if (plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
-                                    player.playSound(player, Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1.0F, 2.0F);
-                                }
+                                playCountdownSound(player, 2.0F);
                                 disableTimer--;
 
                             }
@@ -247,6 +243,23 @@ public class ItemSlotChangeListener implements Listener {
             timers.get(uuid).cancel();
             timers.remove(uuid);
         }
+
+    }
+
+    private void playCountdownSound(Player player, float pitch) {
+
+        if (!plugin.getConfig().getBoolean("pvp-activation-deactivation-countdown-sound.enable")) {
+            return;
+        }
+
+        Sound sound;
+        try {
+            sound = Sound.valueOf(plugin.getConfig().getString("pvp-activation-deactivation-countdown-sound.sound", "BLOCK_WOODEN_BUTTON_CLICK_ON"));
+        } catch (IllegalArgumentException exception) {
+            sound = Sound.BLOCK_WOODEN_BUTTON_CLICK_ON;
+        }
+
+        player.playSound(player, sound, 1.0F, pitch);
 
     }
 

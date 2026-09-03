@@ -39,6 +39,7 @@ public class PlayerDeathListener implements Listener {
             Player killer = event.getEntity().getKiller();
 
             event.getDrops().clear();
+            event.setDroppedExp(0);
 
             if (victim != null && killer != null) {
 
@@ -52,6 +53,10 @@ public class PlayerDeathListener implements Listener {
 
                     if (plugin.getConfig().getBoolean("regeneration-on-kill.enable")) {
                         givePotionEffect(killer);
+                    }
+
+                    if (plugin.getConfig().getBoolean("speed-strength-on-kill.enable")) {
+                        giveSpeedStrength(killer);
                     }
 
                     if (!plugin.getConfig().getString("lang.kill-message").isEmpty()) {
@@ -98,6 +103,19 @@ public class PlayerDeathListener implements Listener {
             int amplifier = plugin.getConfig().getInt("regeneration-on-kill.amplifier");
 
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, duration * 20, amplifier, false, true));
+
+        }
+
+        public void giveSpeedStrength(Player player) {
+
+            int speedDuration = plugin.getConfig().getInt("right-click-ability.speed.duration");
+            int speedAmplifier = plugin.getConfig().getInt("right-click-ability.speed.amplifier");
+
+            int strengthDuration = plugin.getConfig().getInt("right-click-ability.strength.duration");
+            int strengthAmplifier = plugin.getConfig().getInt("right-click-ability.strength.amplifier");
+
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, speedDuration * 20, speedAmplifier, false, true));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, strengthDuration * 20, strengthAmplifier, false, true));
 
         }
 
