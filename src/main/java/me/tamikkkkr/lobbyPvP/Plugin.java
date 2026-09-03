@@ -1,5 +1,6 @@
 package me.tamikkkkr.lobbyPvP;
 
+import me.tamikkkkr.lobbyPvP.bstats.Metrics;
 import me.tamikkkkr.lobbyPvP.commands.PluginReloadCommand;
 import me.tamikkkkr.lobbyPvP.listeners.*;
 import me.tamikkkkr.lobbyPvP.utils.ChatUtil;
@@ -10,6 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Plugin extends JavaPlugin {
+
+    private static final int BSTATS_PLUGIN_ID = 33828;
 
     private ChatUtil chatUtil;
     private LoadItems loadItems;
@@ -30,6 +33,9 @@ public final class Plugin extends JavaPlugin {
 
         // Initializing dependencies
         initializeDependencies();
+
+        // bStats metrics (https://bstats.org/plugin/bukkit/LobbyPvP/33828)
+        new Metrics(this, BSTATS_PLUGIN_ID);
 
         for (Player player: Bukkit.getOnlinePlayers()) {
             if (isPvpWorld.isPvpWorld(player.getWorld())) {
