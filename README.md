@@ -1,7 +1,7 @@
 # ⚔️ LobbyPvP - Simple Hub PvP plugin
 
-[![Downloads](https://img.shields.io/spiget/downloads/126633?label=downloads&color=blue)](https://www.spigotmc.org/resources/126633/)
-[![Rating](https://img.shields.io/spiget/rating/126633?label=rating&color=yellow)](https://www.spigotmc.org/resources/126633/)
+[![Downloads](https://img.shields.io/spiget/downloads/126633?style=for-the-badge&label=Downloads&color=blue&logo=spigotmc&logoColor=white)](https://www.spigotmc.org/resources/126633/)
+[![Rating](https://img.shields.io/spiget/rating/126633?style=for-the-badge&label=Rating&color=yellow&logo=spigotmc&logoColor=white)](https://www.spigotmc.org/resources/126633/)
 
 **LobbyPvP** is an interesting plugin for your minecraft server that will allow players to spend time fighting each other.
 
