@@ -141,7 +141,7 @@ public class ItemsManager {
         }
 
         ItemStack leggings = loadItems.getLeggings();
-        ItemMeta leggingsMeta = chestplate.getItemMeta();
+        ItemMeta leggingsMeta = leggings.getItemMeta();
 
         if (leggingsMeta != null) {
 
@@ -156,7 +156,7 @@ public class ItemsManager {
         }
 
         ItemStack boots = loadItems.getBoots();
-        ItemMeta bootsMeta = chestplate.getItemMeta();
+        ItemMeta bootsMeta = boots.getItemMeta();
 
         if (bootsMeta != null) {
 
