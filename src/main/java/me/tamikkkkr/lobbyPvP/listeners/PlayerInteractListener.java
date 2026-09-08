@@ -159,6 +159,8 @@ public class PlayerInteractListener implements Listener {
                     cooldownDisplayTasks.remove(player.getUniqueId());
                     if (useXpBar) {
                         restoreExp(player, true);
+                    } else {
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(""));
                     }
                     cancel();
                     return;
@@ -171,6 +173,8 @@ public class PlayerInteractListener implements Listener {
                     cooldownDisplayTasks.remove(player.getUniqueId());
                     if (useXpBar) {
                         restoreExp(player, true);
+                    } else {
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(""));
                     }
                     playReadySound(player);
                     cancel();
@@ -259,7 +263,6 @@ public class PlayerInteractListener implements Listener {
         int strengthDuration = plugin.getConfig().getInt("right-click-ability.strength.duration");
         int strengthAmplifier = plugin.getConfig().getInt("right-click-ability.strength.amplifier");
 
-
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, speedDuration * 20, speedAmplifier, false, false, true));
         player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, strengthDuration * 20, strengthAmplifier, false, false, true));
 
@@ -267,7 +270,6 @@ public class PlayerInteractListener implements Listener {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(
                     "lang.ability-activate", "&aYou've gained extra &6damage &aand &6speed&a!")));
         }
-
 
     }
 
